@@ -1,5 +1,5 @@
 import React from "react";
-import "./AppHeader.css";
+import "../styles/AppHeader.css";
 
 const AppHeader = () => {
   return (
