@@ -6,3 +6,9 @@
 .chord-button {
   margin-bottom: 8px;
 }
+
+.btn-set {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
