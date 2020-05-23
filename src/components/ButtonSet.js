@@ -19,6 +19,16 @@ import GS from "../notes/G-s.mp3";
 import A from "../notes/A.mp3";
 import AS from "../notes/A-s.mp3";
 import B from "../notes/B.mp3";
+import CH from "../notes/C-h.mp3";
+import CSH from "../notes/C-sh.mp3";
+import DH from "../notes/D-h.mp3";
+import DSH from "../notes/D-sh.mp3";
+import EH from "../notes/E-h.mp3";
+import FH from "../notes/F-h.mp3";
+import FSH from "../notes/F-sh.mp3";
+import GH from "../notes/G-h.mp3";
+import GSH from "../notes/G-sh.mp3";
+import AH from "../notes/A-h.mp3";
 
 function getModalStyle() {
   const top = 20;
@@ -70,6 +80,16 @@ const ButtonsSet = () => {
   notes.push(new Audio(A)); // 9
   notes.push(new Audio(AS)); // 10
   notes.push(new Audio(B)); // 11
+  notes.push(new Audio(CH)); // 12
+  notes.push(new Audio(CSH)); // 13
+  notes.push(new Audio(DH)); // 14
+  notes.push(new Audio(DSH)); // 15
+  notes.push(new Audio(EH)); // 16
+  notes.push(new Audio(FH)); // 17
+  notes.push(new Audio(FSH)); // 18
+  notes.push(new Audio(GH)); // 19
+  notes.push(new Audio(GSH)); // 20
+  notes.push(new Audio(AH)); // 21
 
   // const notesString = [
   //   "C",
