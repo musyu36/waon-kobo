@@ -1,14 +1,13 @@
 import React from "react";
 import "./App.css";
+import AppHeader from "./AppHeader.js";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <div className="App-header-text">和音工房</div>
-      </header>
+      <AppHeader />
     </div>
   );
-}
+};
 
 export default App;
