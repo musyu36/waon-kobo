@@ -1,0 +1,14 @@
+.button-set {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-set {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.radio-set {
+  display: inline-block;
+}
