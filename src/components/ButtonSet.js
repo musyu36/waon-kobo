@@ -128,6 +128,15 @@ const ButtonsSet = () => {
     { name: "m7", value: 4, checked: false },
     { name: "mM7", value: 5, checked: false },
     { name: "dim", value: 6, checked: false },
+    { name: "sus4", value: 7, checked: false },
+    { name: "7sus4", value: 8, checked: false },
+    { name: "aug", value: 9, checked: false },
+    { name: "m7(♭5)", value: 10, checked: false },
+    { name: "6", value: 11, checked: false },
+    { name: "add9", value: 12, checked: false },
+    { name: "9", value: 13, checked: false },
+    { name: "7(♭9)", value: 14, checked: false },
+    { name: "7(♯9)", value: 15, checked: false },
   ];
 
   // ルート音
@@ -253,6 +262,61 @@ const ButtonsSet = () => {
         nextChord.push(rootNum + 6);
         nextChord.push(rootNum + 9);
         break;
+      case "sus4":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 5);
+        nextChord.push(rootNum + 7);
+        break;
+      case "7sus4":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 5);
+        nextChord.push(rootNum + 7);
+        nextChord.push(rootNum + 10);
+        break;
+      case "aug":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 4);
+        nextChord.push(rootNum + 8);
+        break;
+      case "m7(♭5)":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 3);
+        nextChord.push(rootNum + 6);
+        nextChord.push(rootNum + 10);
+        break;
+      case "6":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 4);
+        nextChord.push(rootNum + 7);
+        nextChord.push(rootNum + 9);
+        break;
+      case "add9":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 4);
+        nextChord.push(rootNum + 7);
+        nextChord.push(rootNum + 14);
+        break;
+      case "9":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 4);
+        nextChord.push(rootNum + 7);
+        nextChord.push(rootNum + 10);
+        nextChord.push(rootNum + 14);
+        break;
+      case "7(♭9)":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 4);
+        nextChord.push(rootNum + 7);
+        nextChord.push(rootNum + 10);
+        nextChord.push(rootNum + 13);
+        break;
+      case "7(♯9)":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 4);
+        nextChord.push(rootNum + 7);
+        nextChord.push(rootNum + 10);
+        nextChord.push(rootNum + 15);
+        break;
       default:
         break;
     }
@@ -268,14 +332,16 @@ const ButtonsSet = () => {
         <form action="">
           {notesStrings.map((note, index) => (
             <label key={index} style={{ marginRight: "8px" }}>
-              <input
-                type="radio"
-                name={note.name}
-                value={note.value}
-                checked={note.checked}
-                onChange={handleRootRadioClick}
-              />
-              {note.name}
+              <span className="radio-set">
+                <input
+                  type="radio"
+                  name={note.name}
+                  value={note.value}
+                  checked={note.checked}
+                  onChange={handleRootRadioClick}
+                />
+                {note.name}
+              </span>
             </label>
           ))}
         </form>
@@ -306,14 +372,16 @@ const ButtonsSet = () => {
         <form action="">
           {chordStrings.map((chord, index) => (
             <label key={index} style={{ marginRight: "8px" }}>
-              <input
-                type="radio"
-                name={chord.name}
-                value={chord.value}
-                checked={chord.checked}
-                onChange={handleChordRadioClick}
-              />
-              {chord.name}
+              <span className="radio-set">
+                <input
+                  type="radio"
+                  name={chord.name}
+                  value={chord.value}
+                  checked={chord.checked}
+                  onChange={handleChordRadioClick}
+                />
+                {chord.name}
+              </span>
             </label>
           ))}
         </form>
