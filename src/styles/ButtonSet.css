@@ -1,6 +1,7 @@
 .button-set {
   display: flex;
   flex-direction: column;
+  margin: 0px 8px 0px;
 }
 
 .btn-set {
@@ -11,4 +12,8 @@
 
 .radio-set {
   display: inline-block;
+}
+
+.modal-title {
+  margin-bottom: 16px;
 }
