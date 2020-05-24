@@ -327,7 +327,7 @@ const ButtonsSet = () => {
 
   const bodyRoot = (
     <div style={modalStyle} className={classes.paper}>
-      <h4>基音</h4>
+      <h4 className="modal-title">基音</h4>
       <div className="modal-notes">
         <form action="">
           {notesStrings.map((note, index) => (
@@ -367,7 +367,7 @@ const ButtonsSet = () => {
 
   const bodyChord = (
     <div style={modalStyle} className={classes.paper}>
-      <h4>構成</h4>
+      <h4 className="modal-title">構成</h4>
       <div className="modal-notes">
         <form action="">
           {chordStrings.map((chord, index) => (
