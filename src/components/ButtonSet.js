@@ -29,6 +29,11 @@ import FSH from "../notes/F-sh.mp3";
 import GH from "../notes/G-h.mp3";
 import GSH from "../notes/G-sh.mp3";
 import AH from "../notes/A-h.mp3";
+import ASH from "../notes/A-sh.mp3";
+import BH from "../notes/B-h.mp3";
+import CHH from "../notes/C-hh.mp3";
+import CSHH from "../notes/C-shh.mp3";
+import DHH from "../notes/D-hh.mp3";
 
 function getModalStyle() {
   const top = 20;
@@ -50,6 +55,10 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[1],
     padding: theme.spacing(2, 4, 3),
     outline: "none",
+  },
+  btnChord: {
+    marginBottom: 8,
+    textTransform: "none",
   },
   btnCancel: {
     marginRight: 8,
@@ -90,21 +99,11 @@ const ButtonsSet = () => {
   notes.push(new Audio(GH)); // 19
   notes.push(new Audio(GSH)); // 20
   notes.push(new Audio(AH)); // 21
-
-  // const notesString = [
-  //   "C",
-  //   "C♯",
-  //   "D",
-  //   "D♯",
-  //   "E",
-  //   "F",
-  //   "F♯",
-  //   "G",
-  //   "G♯",
-  //   "A",
-  //   "A♯",
-  //   "B",
-  // ];
+  notes.push(new Audio(ASH)); // 22
+  notes.push(new Audio(BH)); // 23
+  notes.push(new Audio(CHH)); // 24
+  notes.push(new Audio(CSHH)); // 25
+  notes.push(new Audio(DHH)); // 26
 
   const initialNotesState = [
     { name: "C", value: 0, checked: true },
@@ -121,30 +120,49 @@ const ButtonsSet = () => {
     { name: "B", value: 11, checked: false },
   ];
 
+  const initialChordState = [
+    { name: "maj", value: 0, checked: true },
+    { name: "min", value: 1, checked: false },
+    { name: "7", value: 2, checked: false },
+    { name: "M7", value: 3, checked: false },
+    { name: "m7", value: 4, checked: false },
+    { name: "mM7", value: 5, checked: false },
+    { name: "dim", value: 6, checked: false },
+  ];
+
   // ルート音
   const [notesStrings, setNotesStrings] = useState(initialNotesState);
   const [currentNote, setCurrentNote] = useState("C");
   // 構成
-  const [chordStrings, setChordStrings] = useState();
+  const [chordStrings, setChordStrings] = useState(initialChordState);
   const [currentChord, setCurrentChord] = useState("maj");
 
-  const [open, setOpen] = useState(false);
+  // モーダル管理
+  const [openRootModal, setOpenRootModal] = useState(false);
+  const [openChordModal, setOpenChordModal] = useState(false);
 
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
 
-  const handleOpen = () => {
-    setOpen(true);
+  const handleOpenRootModal = () => {
+    setOpenRootModal(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleCloseRootModal = () => {
+    setOpenRootModal(false);
+  };
+
+  const handleOpenChordModal = () => {
+    setOpenChordModal(true);
+  };
+
+  const handleCloseChordModal = () => {
+    setOpenChordModal(false);
   };
 
   const handleRootRadioClick = (e) => {
-    e.preventDefault();
-    var name = e.target.name;
-    var value = notesStrings.map((item) => {
+    const name = e.target.name;
+    const value = notesStrings.map((item) => {
       return {
         name: item.name,
         value: item.value,
@@ -154,6 +172,20 @@ const ButtonsSet = () => {
     setNotesStrings(value);
   };
 
+  const handleChordRadioClick = (e) => {
+    const selectedValue = e.target.value;
+
+    const value = chordStrings.map((item) => {
+      return {
+        name: item.name,
+        value: item.value,
+        checked: item.value === Number(selectedValue) ? true : false,
+      };
+    });
+    setChordStrings(value);
+  };
+
+  // 再生
   const playChord = () => {
     state.map((value) => {
       notes[value].play();
@@ -163,8 +195,8 @@ const ButtonsSet = () => {
   const selectRoot = (e) => {
     e.preventDefault();
     var rootNum = 0;
+    var chordType = "";
 
-    // 選択中のルート音を更新
     notesStrings.map((note, index) => {
       if (note.checked) {
         rootNum = note.value;
@@ -172,23 +204,64 @@ const ButtonsSet = () => {
       }
     });
 
-    var nextChord = [];
-    switch (currentChord) {
+    chordStrings.map((chord, index) => {
+      if (chord.checked) {
+        chordType = chord.name;
+        return setCurrentChord(chord.name);
+      }
+    });
+
+    const nextChord = [];
+    switch (chordType) {
       case "maj":
         nextChord.push(rootNum);
         nextChord.push(rootNum + 4);
         nextChord.push(rootNum + 7);
         break;
+      case "min":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 3);
+        nextChord.push(rootNum + 7);
+        break;
+      case "7":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 4);
+        nextChord.push(rootNum + 7);
+        nextChord.push(rootNum + 10);
+        break;
+      case "M7":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 4);
+        nextChord.push(rootNum + 7);
+        nextChord.push(rootNum + 11);
+        break;
+      case "m7":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 3);
+        nextChord.push(rootNum + 7);
+        nextChord.push(rootNum + 10);
+        break;
+      case "mM7":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 3);
+        nextChord.push(rootNum + 7);
+        nextChord.push(rootNum + 11);
+        break;
+      case "dim":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 3);
+        nextChord.push(rootNum + 6);
+        nextChord.push(rootNum + 9);
+        break;
       default:
         break;
     }
     dispatch({ type: UPDATE_CHORD, chord: nextChord });
-    handleClose();
+    handleCloseRootModal();
+    handleCloseChordModal();
   };
 
-  const selectChord = () => {};
-
-  const body = (
+  const bodyRoot = (
     <div style={modalStyle} className={classes.paper}>
       <h4>基音</h4>
       <div className="modal-notes">
@@ -209,7 +282,7 @@ const ButtonsSet = () => {
       </div>
       <div className="btn-set">
         <Button
-          onClick={handleClose}
+          onClick={handleCloseRootModal}
           className={classes.btnCancel}
           variant="outlined"
         >
@@ -226,16 +299,79 @@ const ButtonsSet = () => {
     </div>
   );
 
+  const bodyChord = (
+    <div style={modalStyle} className={classes.paper}>
+      <h4>構成</h4>
+      <div className="modal-notes">
+        <form action="">
+          {chordStrings.map((chord, index) => (
+            <label key={index} style={{ marginRight: "8px" }}>
+              <input
+                type="radio"
+                name={chord.name}
+                value={chord.value}
+                checked={chord.checked}
+                onChange={handleChordRadioClick}
+              />
+              {chord.name}
+            </label>
+          ))}
+        </form>
+      </div>
+      <div className="btn-set">
+        <Button
+          onClick={handleCloseChordModal}
+          className={classes.btnCancel}
+          variant="outlined"
+        >
+          キャンセル
+        </Button>
+        <Button
+          onClick={selectRoot}
+          className={classes.btnOk}
+          variant="contained"
+        >
+          決定
+        </Button>
+      </div>
+    </div>
+  );
+
+  var displayChord = "";
+
+  switch (currentChord) {
+    case "maj":
+      displayChord = "";
+      break;
+    case "min":
+      displayChord = "m";
+      break;
+    case "7":
+      displayChord = "7";
+      break;
+    default:
+      displayChord = currentChord;
+      break;
+  }
+
   return (
     <div className="button-set">
-      <Button className="chord-button" variant="outlined" onClick={playChord}>
+      <Button
+        className={classes.btnChord}
+        variant="outlined"
+        onClick={playChord}
+      >
         {currentNote}
+        {displayChord}
       </Button>
-      <Button onClick={handleOpen}>基音</Button>
-      <Modal open={open} onClose={handleClose}>
-        {body}
+      <Button onClick={handleOpenRootModal}>基音</Button>
+      <Modal open={openRootModal} onClose={handleCloseRootModal}>
+        {bodyRoot}
       </Modal>
-      <Button onClick={selectChord}>構成</Button>
+      <Button onClick={handleOpenChordModal}>構成</Button>
+      <Modal open={openChordModal} onClose={handleCloseChordModal}>
+        {bodyChord}
+      </Modal>
     </div>
   );
 };
