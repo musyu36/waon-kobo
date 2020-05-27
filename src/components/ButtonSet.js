@@ -152,14 +152,14 @@ const ButtonsSet = () => {
     var rootNum = 0;
     var chordType = "";
 
-    notesStrings.map((note, index) => {
+    notesStrings.map((note) => {
       if (note.checked) {
         rootNum = note.value;
         return setCurrentNote(note.name);
       }
     });
 
-    chordStrings.map((chord, index) => {
+    chordStrings.map((chord) => {
       if (chord.checked) {
         chordType = chord.name;
         return setCurrentChord(chord.name);
@@ -292,7 +292,7 @@ const ButtonsSet = () => {
           ))}
         </form>
       </div>
-      <div className="btn-set">
+      <div className="modal-btn-set">
         <Button
           onClick={handleCloseRootModal}
           className={classes.btnCancel}
@@ -332,7 +332,7 @@ const ButtonsSet = () => {
           ))}
         </form>
       </div>
-      <div className="btn-set">
+      <div className="modal-btn-set">
         <Button
           onClick={handleCloseChordModal}
           className={classes.btnCancel}
@@ -369,20 +369,20 @@ const ButtonsSet = () => {
   }
 
   return (
-    <div className="button-set">
-      <Button
-        className={classes.btnChord}
-        variant="outlined"
-        onClick={playChord}
-      >
+    <div className="btn-set">
+      <button className="btn-play" variant="outlined" onMouseDown={playChord}>
         {currentNote}
         {displayChord}
-      </Button>
-      <Button onClick={handleOpenRootModal}>基音</Button>
+      </button>
+      <button className="btn-select" onClick={handleOpenRootModal}>
+        基音
+      </button>
       <Modal open={openRootModal} onClose={handleCloseRootModal}>
         {bodyRoot}
       </Modal>
-      <Button onClick={handleOpenChordModal}>構成</Button>
+      <button className="btn-select" onClick={handleOpenChordModal}>
+        構成
+      </button>
       <Modal open={openChordModal} onClose={handleCloseChordModal}>
         {bodyChord}
       </Modal>
