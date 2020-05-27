@@ -20,6 +20,7 @@
   outline: 0;
   cursor: pointer;
 }
+
 .btn-play:active {
   margin-bottom: 32px;
   padding: 16px;
@@ -35,9 +36,9 @@
   margin-bottom: 16px;
   padding: 8px;
   border: none;
-  border-radius: 4px;
-  background: linear-gradient(145deg, #fffbcc, #dad4ac);
-  box-shadow: 5px 5px 10px #cec8a2, -5px -5px 10px #ffffdc;
+  border-radius: 25%;
+  background: #f2ebbf;
+  box-shadow: 2px 2px 5px #cec8a2, -2px -2px 5px #ffffdc;
   outline: 0;
   cursor: pointer;
 }
@@ -46,15 +47,11 @@
   margin-bottom: 16px;
   padding: 8px;
   border: none;
-  border-radius: 4px;
-  background: #f2ebbf;
-  box-shadow: inset 2px 2px 5px #cec8a2, inset -2px -2px 5px #ffffdc;
+  border-radius: 25%;
+  background: linear-gradient(145deg, #dad4ac, #fffbcc);
+  box-shadow: 2px 2px 5px #cec8a2, -2px -2px 5px #ffffdc;
   outline: 0;
   cursor: pointer;
-}
-
-.btn-cancel .radio-set {
-  display: inline-block;
 }
 
 .modal-title {
