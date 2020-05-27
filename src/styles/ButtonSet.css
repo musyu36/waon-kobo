@@ -1,17 +1,57 @@
-.button-set {
+.btn-set {
   display: flex;
   flex-direction: column;
   margin: 0px 8px 0px;
 }
 
-.btn-set {
+.modal-btn-set {
   display: flex;
   justify-content: flex-end;
   margin-top: 16px;
 }
 
-.radio-set {
-  display: inline-block;
+.btn-play {
+  margin-bottom: 32px;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  background: #f2ebbf;
+  box-shadow: 5px 5px 10px #cec8a2, -5px -5px 10px #ffffdc;
+  outline: 0;
+  cursor: pointer;
+}
+
+.btn-play:active {
+  margin-bottom: 32px;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  background: #f2ebbf;
+  box-shadow: inset 5px 5px 10px #cec8a2, inset -5px -5px 10px #ffffdc;
+  outline: 0;
+  cursor: pointer;
+}
+
+.btn-select {
+  margin-bottom: 16px;
+  padding: 8px;
+  border: none;
+  border-radius: 25%;
+  background: #f2ebbf;
+  box-shadow: 2px 2px 5px #cec8a2, -2px -2px 5px #ffffdc;
+  outline: 0;
+  cursor: pointer;
+}
+
+.btn-select:active {
+  margin-bottom: 16px;
+  padding: 8px;
+  border: none;
+  border-radius: 25%;
+  background: linear-gradient(145deg, #dad4ac, #fffbcc);
+  box-shadow: 2px 2px 5px #cec8a2, -2px -2px 5px #ffffdc;
+  outline: 0;
+  cursor: pointer;
 }
 
 .modal-title {
