@@ -1,39 +1,14 @@
-import React, { useReducer, useState } from "react";
+import React, { useContext, useReducer, useState } from "react";
 import "../styles/ButtonSet.css";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
+import AppContext from "../contexts/AppContext";
 
 import { UPDATE_CHORD } from "../actions";
 import reducer from "../reducers";
 
-import C from "../notes/C.mp3";
-import CS from "../notes/C-s.mp3";
-import D from "../notes/D.mp3";
-import DS from "../notes/D-s.mp3";
-import E from "../notes/E.mp3";
-import F from "../notes/F.mp3";
-import FS from "../notes/F-s.mp3";
-import G from "../notes/G.mp3";
-import GS from "../notes/G-s.mp3";
-import A from "../notes/A.mp3";
-import AS from "../notes/A-s.mp3";
-import B from "../notes/B.mp3";
-import CH from "../notes/C-h.mp3";
-import CSH from "../notes/C-sh.mp3";
-import DH from "../notes/D-h.mp3";
-import DSH from "../notes/D-sh.mp3";
-import EH from "../notes/E-h.mp3";
-import FH from "../notes/F-h.mp3";
-import FSH from "../notes/F-sh.mp3";
-import GH from "../notes/G-h.mp3";
-import GSH from "../notes/G-sh.mp3";
-import AH from "../notes/A-h.mp3";
-import ASH from "../notes/A-sh.mp3";
-import BH from "../notes/B-h.mp3";
-import CHH from "../notes/C-hh.mp3";
-import CSHH from "../notes/C-shh.mp3";
-import DHH from "../notes/D-hh.mp3";
+import notes from "../notes/Notes.js";
 
 function getModalStyle() {
   const top = 20;
@@ -76,34 +51,7 @@ const ButtonsSet = () => {
   const initialState = [0, 4, 7];
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const notes = [];
-  notes.push(new Audio(C)); // 0
-  notes.push(new Audio(CS)); // 1
-  notes.push(new Audio(D)); // 2
-  notes.push(new Audio(DS)); // 3
-  notes.push(new Audio(E)); // 4
-  notes.push(new Audio(F)); // 5
-  notes.push(new Audio(FS)); // 6
-  notes.push(new Audio(G)); // 7
-  notes.push(new Audio(GS)); //8
-  notes.push(new Audio(A)); // 9
-  notes.push(new Audio(AS)); // 10
-  notes.push(new Audio(B)); // 11
-  notes.push(new Audio(CH)); // 12
-  notes.push(new Audio(CSH)); // 13
-  notes.push(new Audio(DH)); // 14
-  notes.push(new Audio(DSH)); // 15
-  notes.push(new Audio(EH)); // 16
-  notes.push(new Audio(FH)); // 17
-  notes.push(new Audio(FSH)); // 18
-  notes.push(new Audio(GH)); // 19
-  notes.push(new Audio(GSH)); // 20
-  notes.push(new Audio(AH)); // 21
-  notes.push(new Audio(ASH)); // 22
-  notes.push(new Audio(BH)); // 23
-  notes.push(new Audio(CHH)); // 24
-  notes.push(new Audio(CSHH)); // 25
-  notes.push(new Audio(DHH)); // 26
+  const { setCurrentKey } = useContext(AppContext);
 
   const initialNotesState = [
     { name: "C", value: 0, checked: true },
@@ -196,7 +144,9 @@ const ButtonsSet = () => {
 
   // 再生
   const playChord = () => {
+    setCurrentKey(state);
     state.map((value) => {
+      notes[value].currentTime = 0;
       notes[value].play();
     });
   };
@@ -206,14 +156,14 @@ const ButtonsSet = () => {
     var rootNum = 0;
     var chordType = "";
 
-    notesStrings.map((note, index) => {
+    notesStrings.map((note) => {
       if (note.checked) {
         rootNum = note.value;
         return setCurrentNote(note.name);
       }
     });
 
-    chordStrings.map((chord, index) => {
+    chordStrings.map((chord) => {
       if (chord.checked) {
         chordType = chord.name;
         return setCurrentChord(chord.name);
@@ -327,7 +277,7 @@ const ButtonsSet = () => {
 
   const bodyRoot = (
     <div style={modalStyle} className={classes.paper}>
-      <h4>基音</h4>
+      <h4 className="modal-title">基音</h4>
       <div className="modal-notes">
         <form action="">
           {notesStrings.map((note, index) => (
@@ -346,7 +296,7 @@ const ButtonsSet = () => {
           ))}
         </form>
       </div>
-      <div className="btn-set">
+      <div className="modal-btn-set">
         <Button
           onClick={handleCloseRootModal}
           className={classes.btnCancel}
@@ -367,7 +317,7 @@ const ButtonsSet = () => {
 
   const bodyChord = (
     <div style={modalStyle} className={classes.paper}>
-      <h4>構成</h4>
+      <h4 className="modal-title">構成</h4>
       <div className="modal-notes">
         <form action="">
           {chordStrings.map((chord, index) => (
@@ -386,7 +336,7 @@ const ButtonsSet = () => {
           ))}
         </form>
       </div>
-      <div className="btn-set">
+      <div className="modal-btn-set">
         <Button
           onClick={handleCloseChordModal}
           className={classes.btnCancel}
@@ -423,20 +373,20 @@ const ButtonsSet = () => {
   }
 
   return (
-    <div className="button-set">
-      <Button
-        className={classes.btnChord}
-        variant="outlined"
-        onClick={playChord}
-      >
+    <div className="btn-set">
+      <button className="btn-play" variant="outlined" onMouseDown={playChord}>
         {currentNote}
         {displayChord}
-      </Button>
-      <Button onClick={handleOpenRootModal}>基音</Button>
+      </button>
+      <button className="btn-select" onClick={handleOpenRootModal}>
+        基音
+      </button>
       <Modal open={openRootModal} onClose={handleCloseRootModal}>
         {bodyRoot}
       </Modal>
-      <Button onClick={handleOpenChordModal}>構成</Button>
+      <button className="btn-select" onClick={handleOpenChordModal}>
+        構成
+      </button>
       <Modal open={openChordModal} onClose={handleCloseChordModal}>
         {bodyChord}
       </Modal>
