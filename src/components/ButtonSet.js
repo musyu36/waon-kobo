@@ -1,8 +1,9 @@
-import React, { useReducer, useState } from "react";
+import React, { useContext, useReducer, useState } from "react";
 import "../styles/ButtonSet.css";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
+import AppContext from "../contexts/AppContext";
 
 import { UPDATE_CHORD } from "../actions";
 import reducer from "../reducers";
@@ -49,6 +50,8 @@ const useStyles = makeStyles((theme) => ({
 const ButtonsSet = () => {
   const initialState = [0, 4, 7];
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  const { setCurrentKey } = useContext(AppContext);
 
   const initialNotesState = [
     { name: "C", value: 0, checked: true },
@@ -141,6 +144,7 @@ const ButtonsSet = () => {
 
   // 再生
   const playChord = () => {
+    setCurrentKey(state);
     state.map((value) => {
       notes[value].currentTime = 0;
       notes[value].play();

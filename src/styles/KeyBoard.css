@@ -40,3 +40,7 @@
   height: 115px;
 }
 /*END white_key*/
+
+.active {
+  background: #f06060;
+}

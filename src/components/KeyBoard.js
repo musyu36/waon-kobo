@@ -1,67 +1,178 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../styles/KeyBoard.css";
+import AppContext from "../contexts/AppContext";
 
 const KeyBoard = () => {
+  const { currentKey } = useContext(AppContext);
+
   return (
     <div className="keyboard">
       <div className="key">
-        <div className="white_key 0"></div>
-        <div className="black_key 1"></div>
+        {currentKey.includes(0) ? (
+          <div className="white_key active"></div>
+        ) : (
+          <div className="white_key"></div>
+        )}
+        {currentKey.includes(1) ? (
+          <div className="black_key active"></div>
+        ) : (
+          <div className="black_key"></div>
+        )}
       </div>
       <div className="key">
-        <div className="white_key 2"></div>
-        <div className="black_key 3"></div>
+        {currentKey.includes(2) ? (
+          <div className="white_key active"></div>
+        ) : (
+          <div className="white_key"></div>
+        )}
+        {currentKey.includes(3) ? (
+          <div className="black_key active"></div>
+        ) : (
+          <div className="black_key"></div>
+        )}
       </div>
       <div className="key">
-        <div className="white_key 4"></div>
+        {currentKey.includes(4) ? (
+          <div className="white_key active"></div>
+        ) : (
+          <div className="white_key"></div>
+        )}
       </div>
       <div className="key">
-        <div className="white_key 5"></div>
-        <div className="black_key 6"></div>
+        {currentKey.includes(5) ? (
+          <div className="white_key active"></div>
+        ) : (
+          <div className="white_key"></div>
+        )}
+        {currentKey.includes(6) ? (
+          <div className="black_key active"></div>
+        ) : (
+          <div className="black_key"></div>
+        )}
       </div>
       <div className="key">
-        <div className="white_key 7"></div>
-        <div className="black_key 8"></div>
+        {currentKey.includes(7) ? (
+          <div className="white_key active"></div>
+        ) : (
+          <div className="white_key"></div>
+        )}
+        {currentKey.includes(8) ? (
+          <div className="black_key active"></div>
+        ) : (
+          <div className="black_key"></div>
+        )}
       </div>
       <div className="key">
-        <div className="white_key 9"></div>
-        <div className="black_key 10"></div>
+        {currentKey.includes(9) ? (
+          <div className="white_key active"></div>
+        ) : (
+          <div className="white_key"></div>
+        )}
+        {currentKey.includes(10) ? (
+          <div className="black_key active"></div>
+        ) : (
+          <div className="black_key"></div>
+        )}
       </div>
       <div className="key">
-        <div className="white_key 11"></div>
+        {currentKey.includes(11) ? (
+          <div className="white_key active"></div>
+        ) : (
+          <div className="white_key"></div>
+        )}
       </div>
       <div className="key">
-        <div className="white_key 12"></div>
-        <div className="black_key 13"></div>
+        {currentKey.includes(12) ? (
+          <div className="white_key active"></div>
+        ) : (
+          <div className="white_key"></div>
+        )}
+        {currentKey.includes(13) ? (
+          <div className="black_key active"></div>
+        ) : (
+          <div className="black_key"></div>
+        )}
       </div>
       <div className="key">
-        <div className="white_key 14"></div>
-        <div className="black_key 15"></div>
+        {currentKey.includes(14) ? (
+          <div className="white_key active"></div>
+        ) : (
+          <div className="white_key"></div>
+        )}
+        {currentKey.includes(15) ? (
+          <div className="black_key active"></div>
+        ) : (
+          <div className="black_key"></div>
+        )}
       </div>
       <div className="key">
-        <div className="white_key 16"></div>
+        {currentKey.includes(16) ? (
+          <div className="white_key active"></div>
+        ) : (
+          <div className="white_key"></div>
+        )}
       </div>
       <div className="key">
-        <div className="white_key 17"></div>
-        <div className="black_key 18"></div>
+        {currentKey.includes(17) ? (
+          <div className="white_key active"></div>
+        ) : (
+          <div className="white_key"></div>
+        )}
+        {currentKey.includes(18) ? (
+          <div className="black_key active"></div>
+        ) : (
+          <div className="black_key"></div>
+        )}
       </div>
       <div className="key">
-        <div className="white_key 19"></div>
-        <div className="black_key 20"></div>
+        {currentKey.includes(19) ? (
+          <div className="white_key active"></div>
+        ) : (
+          <div className="white_key"></div>
+        )}
+        {currentKey.includes(20) ? (
+          <div className="black_key active"></div>
+        ) : (
+          <div className="black_key"></div>
+        )}
       </div>
       <div className="key">
-        <div className="white_key 21"></div>
-        <div className="black_key 22"></div>
+        {currentKey.includes(21) ? (
+          <div className="white_key active"></div>
+        ) : (
+          <div className="white_key"></div>
+        )}
+        {currentKey.includes(22) ? (
+          <div className="black_key active"></div>
+        ) : (
+          <div className="black_key"></div>
+        )}
       </div>
       <div className="key">
-        <div className="white_key 23"></div>
+        {currentKey.includes(23) ? (
+          <div className="white_key active"></div>
+        ) : (
+          <div className="white_key"></div>
+        )}
       </div>
       <div className="key">
-        <div className="white_key 24"></div>
-        <div className="black_key 25"></div>
+        {currentKey.includes(24) ? (
+          <div className="white_key active"></div>
+        ) : (
+          <div className="white_key"></div>
+        )}
+        {currentKey.includes(25) ? (
+          <div className="black_key active"></div>
+        ) : (
+          <div className="black_key"></div>
+        )}
       </div>
       <div className="key">
-        <div className="white_key 26"></div>
+        {currentKey.includes(26) ? (
+          <div className="white_key active"></div>
+        ) : (
+          <div className="white_key"></div>
+        )}
       </div>
     </div>
   );
