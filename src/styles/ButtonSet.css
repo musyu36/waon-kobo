@@ -46,6 +46,7 @@
   box-shadow: 2px 2px 5px #cec8a2, -2px -2px 5px #ffffdc;
   outline: 0;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .btn-select:active {
