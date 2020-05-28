@@ -4,3 +4,9 @@
   align-items: center;
   justify-content: space-around;
 }
+
+.key-board {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
