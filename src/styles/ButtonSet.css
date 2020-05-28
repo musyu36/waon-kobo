@@ -1,3 +1,7 @@
+button {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
 .btn-set {
   display: flex;
   flex-direction: column;
@@ -28,7 +32,7 @@
 
 .btn-play:active {
   margin-bottom: 32px;
-  padding: 16px;
+  padding: 17px 15px 15px 17px;
   border: none;
   border-radius: 12px;
   background: #f2ebbf;
@@ -51,7 +55,7 @@
 
 .btn-select:active {
   margin-bottom: 16px;
-  padding: 8px;
+  padding: 9px 7px 7px 9px;
   border: none;
   border-radius: 25%;
   background: linear-gradient(145deg, #dad4ac, #fffbcc);
