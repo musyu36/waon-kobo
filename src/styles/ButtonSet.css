@@ -1,3 +1,7 @@
+button {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
 .btn-set {
   display: flex;
   flex-direction: column;
