@@ -1,4 +1,5 @@
 .App-header {
+  padding: 8px 8px 8px 16px;
   display: flex;
   font-size: calc(10px + 2vmin);
   background-color: aliceblue;
