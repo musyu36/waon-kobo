@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     position: "absolute",
     width: "auto",
-    backgroundColor: "#f2ebbf",
+    backgroundColor: "#e6f0fa",
     borderTop: "2px solid #f06060",
     boxShadow: theme.shadows[1],
     padding: theme.spacing(2, 4, 3),
@@ -37,13 +37,22 @@ const useStyles = makeStyles((theme) => ({
   },
   btnCancel: {
     marginRight: 8,
-    color: "#8cbeb2",
-    border: "1px solid #8cbeb2",
+    color: "#16acde",
+    border: "1px solid #16acde",
+    "&:hover": {
+      color: "#1184ab",
+      border: "1px solid #1184ab",
+    },
   },
   btnOk: {
-    backgroundColor: "#8cbeb2",
-    color: "#f2ebbf",
-    border: "1px solid #8cbeb2",
+    backgroundColor: "#16acde",
+    color: "#e6f0fa",
+    border: "1px solid #16acde",
+    "&:hover": {
+      backgroundColor: "#1184ab",
+      color: "e6f0fa",
+      border: "1px solid #1184ab",
+    },
   },
 }));
 
@@ -301,6 +310,7 @@ const ButtonsSet = () => {
           onClick={handleCloseRootModal}
           className={classes.btnCancel}
           variant="outlined"
+          // color="primary"
         >
           キャンセル
         </Button>
@@ -308,6 +318,7 @@ const ButtonsSet = () => {
           onClick={selectRoot}
           className={classes.btnOk}
           variant="contained"
+          // color="primary"
         >
           決定
         </Button>
@@ -341,6 +352,7 @@ const ButtonsSet = () => {
           onClick={handleCloseChordModal}
           className={classes.btnCancel}
           variant="outlined"
+          // color="primary"
         >
           キャンセル
         </Button>
@@ -348,6 +360,7 @@ const ButtonsSet = () => {
           onClick={selectRoot}
           className={classes.btnOk}
           variant="contained"
+          // color="primary"
         >
           決定
         </Button>
@@ -374,7 +387,7 @@ const ButtonsSet = () => {
 
   return (
     <div className="btn-set">
-      <button className="btn-play" variant="outlined" onMouseDown={playChord}>
+      <button className="btn-play" variant="outlined" onClick={playChord}>
         {currentNote}
         {displayChord}
       </button>

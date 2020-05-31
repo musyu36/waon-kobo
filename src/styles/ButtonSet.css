@@ -24,8 +24,8 @@ button {
   padding: 16px;
   border: none;
   border-radius: 12px;
-  background: #f2ebbf;
-  box-shadow: 5px 5px 10px #cec8a2, -5px -5px 10px #ffffdc;
+  background: #e6f0fa;
+  box-shadow: 5px 5px 10px #c4ccd5, -5px -5px 10px #ffffff;
   outline: 0;
   cursor: pointer;
 }
@@ -35,8 +35,8 @@ button {
   padding: 17px 15px 15px 17px;
   border: none;
   border-radius: 12px;
-  background: #f2ebbf;
-  box-shadow: inset 5px 5px 10px #cec8a2, inset -5px -5px 10px #ffffdc;
+  background: #e6f0fa;
+  box-shadow: inset 5px 5px 10px #c4ccd5, inset -5px -5px 10px #ffffff;
   outline: 0;
   cursor: pointer;
 }
@@ -46,8 +46,8 @@ button {
   padding: 8px;
   border: none;
   border-radius: 25%;
-  background: #f2ebbf;
-  box-shadow: 2px 2px 5px #cec8a2, -2px -2px 5px #ffffdc;
+  background: #e6f0fa;
+  box-shadow: 2px 2px 5px #c4ccd5, -2px -2px 5px #ffffff;
   outline: 0;
   cursor: pointer;
   white-space: nowrap;
@@ -58,8 +58,8 @@ button {
   padding: 9px 7px 7px 9px;
   border: none;
   border-radius: 25%;
-  background: linear-gradient(145deg, #dad4ac, #fffbcc);
-  box-shadow: 2px 2px 5px #cec8a2, -2px -2px 5px #ffffdc;
+  background: linear-gradient(145deg, #cfd8e1, #f6ffff);
+  box-shadow: 2px 2px 5px #c4ccd5, -2px -2px 5px #ffffff;
   outline: 0;
   cursor: pointer;
 }
