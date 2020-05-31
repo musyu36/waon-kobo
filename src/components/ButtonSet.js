@@ -104,19 +104,10 @@ const ButtonsSet = () => {
   const [currentChord, setCurrentChord] = useState("maj");
 
   // モーダル管理
-  const [openRootModal, setOpenRootModal] = useState(false);
   const [openChordModal, setOpenChordModal] = useState(false);
 
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
-
-  const handleOpenRootModal = () => {
-    setOpenRootModal(true);
-  };
-
-  const handleCloseRootModal = () => {
-    setOpenRootModal(false);
-  };
 
   const handleOpenChordModal = () => {
     setOpenChordModal(true);
@@ -160,7 +151,7 @@ const ButtonsSet = () => {
     });
   };
 
-  const selectRoot = (e) => {
+  const selectChord = (e) => {
     e.preventDefault();
     var rootNum = 0;
     var chordType = "";
@@ -280,11 +271,10 @@ const ButtonsSet = () => {
         break;
     }
     dispatch({ type: UPDATE_CHORD, chord: nextChord });
-    handleCloseRootModal();
     handleCloseChordModal();
   };
 
-  const bodyRoot = (
+  const bodyChord = (
     <div style={modalStyle} className={classes.paper}>
       <h4 className="modal-title">基音</h4>
       <div className="modal-notes">
@@ -305,30 +295,7 @@ const ButtonsSet = () => {
           ))}
         </form>
       </div>
-      <div className="modal-btn-set">
-        <Button
-          onClick={handleCloseRootModal}
-          className={classes.btnCancel}
-          variant="outlined"
-          // color="primary"
-        >
-          キャンセル
-        </Button>
-        <Button
-          onClick={selectRoot}
-          className={classes.btnOk}
-          variant="contained"
-          // color="primary"
-        >
-          決定
-        </Button>
-      </div>
-    </div>
-  );
-
-  const bodyChord = (
-    <div style={modalStyle} className={classes.paper}>
-      <h4 className="modal-title">構成</h4>
+      <h4 className="modal-title modal-title-structure">構成</h4>
       <div className="modal-notes">
         <form action="">
           {chordStrings.map((chord, index) => (
@@ -352,15 +319,13 @@ const ButtonsSet = () => {
           onClick={handleCloseChordModal}
           className={classes.btnCancel}
           variant="outlined"
-          // color="primary"
         >
           キャンセル
         </Button>
         <Button
-          onClick={selectRoot}
+          onClick={selectChord}
           className={classes.btnOk}
           variant="contained"
-          // color="primary"
         >
           決定
         </Button>
@@ -391,14 +356,8 @@ const ButtonsSet = () => {
         {currentNote}
         {displayChord}
       </button>
-      <button className="btn-select" onClick={handleOpenRootModal}>
-        基音
-      </button>
-      <Modal open={openRootModal} onClose={handleCloseRootModal}>
-        {bodyRoot}
-      </Modal>
       <button className="btn-select" onClick={handleOpenChordModal}>
-        構成
+        <div className="btn-image"></div>
       </button>
       <Modal open={openChordModal} onClose={handleCloseChordModal}>
         {bodyChord}
