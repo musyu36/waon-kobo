@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import AppContext from "../contexts/AppContext";
+import HammerIcon from "./HammerIcon";
 
 import { UPDATE_CHORD } from "../actions";
 import reducer from "../reducers";
@@ -357,7 +358,7 @@ const ButtonsSet = () => {
         {displayChord}
       </button>
       <button className="btn-select" onClick={handleOpenChordModal}>
-        <div className="btn-image"></div>
+        <HammerIcon />
       </button>
       <Modal open={openChordModal} onClose={handleCloseChordModal}>
         {bodyChord}
