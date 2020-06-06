@@ -17,8 +17,10 @@ var currentChordsDic = {
 
 const ChordButtons = () => {
   const { setCurrentKey, currentChords } = useContext(AppContext);
+
   // 再生ボタン押下時，どのボタンが再生されているか
   const [state, setState] = useState(0);
+
   // 再生ボタン表示管理
   var [playButton, setPlayButton] = useState();
 

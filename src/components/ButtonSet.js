@@ -100,6 +100,7 @@ const ButtonsSet = ({ btnNum, playingNum }) => {
   // ルート音
   const [notesStrings, setNotesStrings] = useState(initialNotesState);
   const [currentNote, setCurrentNote] = useState("C");
+
   // 構成
   const [chordStrings, setChordStrings] = useState(initialChordState);
   const [currentChord, setCurrentChord] = useState("maj");
@@ -356,12 +357,30 @@ const ButtonsSet = ({ btnNum, playingNum }) => {
       break;
   }
 
-  return (
-    <div className="btn-set">
+  var playButton = null;
+  if (btnNum === playingNum) {
+    playButton = (
+      <button className="btn-play-pushed" variant="outlined">
+        {currentNote}
+        {displayChord}
+      </button>
+    );
+  } else {
+    playButton = (
       <button className="btn-play" variant="outlined" onClick={playChord}>
         {currentNote}
         {displayChord}
       </button>
+    );
+  }
+
+  return (
+    <div className="btn-set">
+      {/* <button className="btn-play" variant="outlined" onClick={playChord}>
+        {currentNote}
+        {displayChord}
+      </button> */}
+      {playButton}
       <button className="btn-select" onClick={handleOpenChordModal}>
         <HammerIcon />
       </button>
