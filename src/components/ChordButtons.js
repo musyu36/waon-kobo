@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import "../styles/ChordButtons.css";
 import ButtonSet from "./ButtonSet.js";
 import PlayButton from "./PlayButton.js";
+import ShuffleButton from "./ShuffleButton.js";
 import PlayButtonPushed from "./PlayButtonPushed.js";
 import notes from "../notes/Notes.js";
 
@@ -77,6 +78,7 @@ const ChordButtons = () => {
         <ButtonSet btnNum={4} playingNum={state} />
       </div>
       {playButton}
+      <ShuffleButton />
     </>
   );
 };

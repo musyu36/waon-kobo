@@ -376,10 +376,6 @@ const ButtonsSet = ({ btnNum, playingNum }) => {
 
   return (
     <div className="btn-set">
-      {/* <button className="btn-play" variant="outlined" onClick={playChord}>
-        {currentNote}
-        {displayChord}
-      </button> */}
       {playButton}
       <button className="btn-select" onClick={handleOpenChordModal}>
         <HammerIcon />
