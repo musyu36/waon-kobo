@@ -3,7 +3,7 @@ import hammerIcon from "../img/hammer.svg";
 import "../styles/HammerIcon.css";
 
 const HammerIcon = () => {
-  return <img src={hammerIcon} alt="" />;
+  return <img className={"hammer-icon"} src={hammerIcon} alt="" />;
 };
 
 export default HammerIcon;

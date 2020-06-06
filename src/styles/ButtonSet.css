@@ -41,6 +41,17 @@ button {
   cursor: pointer;
 }
 
+.btn-play-pushed {
+  margin-bottom: 32px;
+  padding: 17px 15px 15px 17px;
+  border: none;
+  border-radius: 12px;
+  background: #e6f0fa;
+  box-shadow: inset 5px 5px 10px #c4ccd5, inset -5px -5px 10px #ffffff;
+  outline: 0;
+  cursor: pointer;
+}
+
 .btn-select {
   margin-bottom: 16px;
   padding: 6px;
