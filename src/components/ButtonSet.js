@@ -1,13 +1,10 @@
-import React, { useContext, useReducer, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "../styles/ButtonSet.css";
+import HammerIcon from "./HammerIcon";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import AppContext from "../contexts/AppContext";
-import HammerIcon from "./HammerIcon";
-
-import { UPDATE_CHORD } from "../actions";
-import reducer from "../reducers";
 
 import notes from "../notes/Notes.js";
 
@@ -57,11 +54,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ButtonsSet = () => {
+const ButtonsSet = ({ btnNum, playingNum }) => {
   const initialState = [0, 4, 7];
-  const [state, dispatch] = useReducer(reducer, initialState);
 
-  const { setCurrentKey } = useContext(AppContext);
+  const [state, setState] = useState(initialState);
+
+  const { setCurrentKey, currentChords, setCurrentChords } = useContext(
+    AppContext
+  );
 
   const initialNotesState = [
     { name: "C", value: 0, checked: true },
@@ -108,7 +108,11 @@ const ButtonsSet = () => {
   const [openChordModal, setOpenChordModal] = useState(false);
 
   const classes = useStyles();
-  const [modalStyle] = React.useState(getModalStyle);
+  const [modalStyle] = useState(getModalStyle);
+
+  useEffect(() => {
+    setCurrentChords({ ...currentChords, [btnNum]: state });
+  }, [state]);
 
   const handleOpenChordModal = () => {
     setOpenChordModal(true);
@@ -271,7 +275,8 @@ const ButtonsSet = () => {
       default:
         break;
     }
-    dispatch({ type: UPDATE_CHORD, chord: nextChord });
+
+    setState(nextChord);
     handleCloseChordModal();
   };
 
