@@ -1,0 +1,16 @@
+.play-button-pushed {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-play-chords-pushed {
+  position: relative;
+  margin-bottom: 32px;
+  padding: 5px 3px 3px 5px;
+  border: none;
+  border-radius: 12px;
+  background: #e6f0fa;
+  box-shadow: inset 5px 5px 10px #c4ccd5, inset -5px -5px 10px #ffffff;
+  outline: 0;
+  cursor: pointer;
+}
