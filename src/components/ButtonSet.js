@@ -157,11 +157,139 @@ const ButtonsSet = ({ btnNum, playingNum }) => {
     });
   };
 
+  // コードの選択
   const selectChord = (e) => {
     e.preventDefault();
     var rootNum = 0;
     var chordType = "";
 
+    // trueの物を探す
+    notesStrings.map((note) => {
+      if (note.checked) {
+        rootNum = note.value;
+        return setCurrentNote(note.name);
+      }
+    });
+
+    chordStrings.map((chord) => {
+      if (chord.checked) {
+        chordType = chord.name;
+        return setCurrentChord(chord.name);
+      }
+    });
+
+    const nextChord = [];
+    switch (chordType) {
+      case "maj":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 4);
+        nextChord.push(rootNum + 7);
+        break;
+      case "min":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 3);
+        nextChord.push(rootNum + 7);
+        break;
+      case "7":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 4);
+        nextChord.push(rootNum + 7);
+        nextChord.push(rootNum + 10);
+        break;
+      case "M7":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 4);
+        nextChord.push(rootNum + 7);
+        nextChord.push(rootNum + 11);
+        break;
+      case "m7":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 3);
+        nextChord.push(rootNum + 7);
+        nextChord.push(rootNum + 10);
+        break;
+      case "mM7":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 3);
+        nextChord.push(rootNum + 7);
+        nextChord.push(rootNum + 11);
+        break;
+      case "dim":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 3);
+        nextChord.push(rootNum + 6);
+        nextChord.push(rootNum + 9);
+        break;
+      case "sus4":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 5);
+        nextChord.push(rootNum + 7);
+        break;
+      case "7sus4":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 5);
+        nextChord.push(rootNum + 7);
+        nextChord.push(rootNum + 10);
+        break;
+      case "aug":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 4);
+        nextChord.push(rootNum + 8);
+        break;
+      case "m7(♭5)":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 3);
+        nextChord.push(rootNum + 6);
+        nextChord.push(rootNum + 10);
+        break;
+      case "6":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 4);
+        nextChord.push(rootNum + 7);
+        nextChord.push(rootNum + 9);
+        break;
+      case "add9":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 4);
+        nextChord.push(rootNum + 7);
+        nextChord.push(rootNum + 14);
+        break;
+      case "9":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 4);
+        nextChord.push(rootNum + 7);
+        nextChord.push(rootNum + 10);
+        nextChord.push(rootNum + 14);
+        break;
+      case "7(♭9)":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 4);
+        nextChord.push(rootNum + 7);
+        nextChord.push(rootNum + 10);
+        nextChord.push(rootNum + 13);
+        break;
+      case "7(♯9)":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 4);
+        nextChord.push(rootNum + 7);
+        nextChord.push(rootNum + 10);
+        nextChord.push(rootNum + 15);
+        break;
+      default:
+        break;
+    }
+
+    setState(nextChord);
+    handleCloseChordModal();
+  };
+
+  // コードのランダム選択
+  const shuffleChord = (e) => {
+    e.preventDefault();
+    var rootNum = 0;
+    var chordType = "";
+
+    // trueの物を探す
     notesStrings.map((note) => {
       if (note.checked) {
         rootNum = note.value;
