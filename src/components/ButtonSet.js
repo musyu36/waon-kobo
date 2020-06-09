@@ -54,14 +54,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ButtonsSet = ({ btnNum, playingNum }) => {
+const ButtonsSet = ({
+  btnNum,
+  playingNum,
+  currentChords,
+  setCurrentChords,
+  randomChord,
+}) => {
   const initialState = [0, 4, 7];
 
   const [state, setState] = useState(initialState);
 
-  const { setCurrentKey, currentChords, setCurrentChords } = useContext(
-    AppContext
-  );
+  const { setCurrentKey } = useContext(AppContext);
 
   const initialNotesState = [
     { name: "C", value: 0, checked: true },
@@ -111,6 +115,17 @@ const ButtonsSet = ({ btnNum, playingNum }) => {
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
 
+  // propsで渡されたrandomChordを使ってここのボタン情報を更新する
+  useEffect(() => {
+    shuffleRootRadio(randomChord[0]);
+    shuffleChordRadio(randomChord[1]);
+  }, [randomChord]);
+
+  useEffect(() => {
+    shuffleChord(randomChord);
+  }, [notesStrings, chordStrings]);
+
+  // useEffect内で更新を行わないと，currentChordsが正しく更新されない
   useEffect(() => {
     setCurrentChords({ ...currentChords, [btnNum]: state });
   }, [state]);
@@ -123,6 +138,30 @@ const ButtonsSet = ({ btnNum, playingNum }) => {
     setOpenChordModal(false);
   };
 
+  // コードシャッフル
+  const shuffleRootRadio = (randomChordRootNum) => {
+    const value = notesStrings.map((item) => {
+      return {
+        name: item.name,
+        value: item.value,
+        checked: item.value === randomChordRootNum ? true : false,
+      };
+    });
+    setNotesStrings(value);
+  };
+
+  const shuffleChordRadio = (randomChordName) => {
+    const value = chordStrings.map((item) => {
+      return {
+        name: item.name,
+        value: item.value,
+        checked: item.name === randomChordName ? true : false,
+      };
+    });
+    setChordStrings(value);
+  };
+
+  // コード選択
   const handleRootRadioClick = (e) => {
     const name = e.target.name;
     const value = notesStrings.map((item) => {
@@ -157,11 +196,11 @@ const ButtonsSet = ({ btnNum, playingNum }) => {
     });
   };
 
-  const selectChord = (e) => {
-    e.preventDefault();
+  const updateChord = () => {
     var rootNum = 0;
     var chordType = "";
 
+    // trueの物を探す
     notesStrings.map((note) => {
       if (note.checked) {
         rootNum = note.value;
@@ -175,7 +214,6 @@ const ButtonsSet = ({ btnNum, playingNum }) => {
         return setCurrentChord(chord.name);
       }
     });
-
     const nextChord = [];
     switch (chordType) {
       case "maj":
@@ -276,9 +314,19 @@ const ButtonsSet = ({ btnNum, playingNum }) => {
       default:
         break;
     }
-
     setState(nextChord);
+  };
+
+  // コードの選択
+  const selectChord = (e) => {
+    e.preventDefault();
+    updateChord();
     handleCloseChordModal();
+  };
+
+  // コードのランダム選択
+  const shuffleChord = () => {
+    updateChord();
   };
 
   const bodyChord = (
@@ -376,10 +424,6 @@ const ButtonsSet = ({ btnNum, playingNum }) => {
 
   return (
     <div className="btn-set">
-      {/* <button className="btn-play" variant="outlined" onClick={playChord}>
-        {currentNote}
-        {displayChord}
-      </button> */}
       {playButton}
       <button className="btn-select" onClick={handleOpenChordModal}>
         <HammerIcon />
