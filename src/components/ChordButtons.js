@@ -17,10 +17,24 @@ var currentChordsDic = {
   4: [0, 4, 7],
 };
 
+const initialCurrentChords = {
+  1: [0, 4, 7],
+  2: [0, 4, 7],
+  3: [0, 4, 7],
+  4: [0, 4, 7],
+};
+
+const initialRandomChords = [
+  [0, "major"],
+  [0, "major"],
+  [0, "major"],
+  [0, "major"],
+];
+
 const scaleStrings = ["major"];
 
 const ChordButtons = () => {
-  const { setCurrentKey, currentChords } = useContext(AppContext);
+  const { setCurrentKey } = useContext(AppContext);
 
   // 再生ボタン押下時，どのボタンが再生されているか
   const [state, setState] = useState(0);
@@ -28,13 +42,18 @@ const ChordButtons = () => {
   // 再生ボタン表示管理
   var [playButton, setPlayButton] = useState();
 
+  // 選択されている4つのコード
+  const [currentChords, setCurrentChords] = useState(initialCurrentChords);
+
+  const [randomChords, setRandomChords] = useState(initialRandomChords);
+
   useEffect(() => {
     currentChordsDic = currentChords;
   }, [currentChords]);
 
   // 再生
   const playChords = () => {
-    const tm = 2000;
+    const tm = 200;
     var i = 2;
     const fn = function () {
       if (i > 4) {
@@ -87,6 +106,9 @@ const ChordButtons = () => {
             // IM7
             case 1:
               rootNum = randomRootNum + 0;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
               // [選ばれたキーの音 + キーの音からルート音がどれだけ離れているか, コードの種類]
               randomDiatonicSet.push([
                 rootNum,
@@ -96,6 +118,9 @@ const ChordButtons = () => {
             // IIm7
             case 2:
               rootNum = randomRootNum + 2;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
               randomDiatonicSet.push([
                 rootNum,
                 diatonicChords[randomScale][value],
@@ -104,6 +129,9 @@ const ChordButtons = () => {
             // IIIm7
             case 3:
               rootNum = randomRootNum + 4;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
               randomDiatonicSet.push([
                 rootNum,
                 diatonicChords[randomScale][value],
@@ -112,6 +140,9 @@ const ChordButtons = () => {
             // IVM7
             case 4:
               rootNum = randomRootNum + 5;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
               randomDiatonicSet.push([
                 rootNum,
                 diatonicChords[randomScale][value],
@@ -120,6 +151,9 @@ const ChordButtons = () => {
             // V7
             case 5:
               rootNum = randomRootNum + 7;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
               randomDiatonicSet.push([
                 rootNum,
                 diatonicChords[randomScale][value],
@@ -128,6 +162,9 @@ const ChordButtons = () => {
             // VI7
             case 6:
               rootNum = randomRootNum + 9;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
               randomDiatonicSet.push([
                 rootNum,
                 diatonicChords[randomScale][value],
@@ -136,6 +173,9 @@ const ChordButtons = () => {
             // VII7
             case 7:
               rootNum = randomRootNum + 11;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
               randomDiatonicSet.push([
                 rootNum,
                 diatonicChords[randomScale][value],
@@ -149,6 +189,8 @@ const ChordButtons = () => {
           break;
       }
     });
+    console.log("### randomDiatonic: ", randomDiatonicSet);
+    setRandomChords(randomDiatonicSet);
   };
 
   useEffect(() => {
@@ -162,10 +204,34 @@ const ChordButtons = () => {
   return (
     <>
       <div className="chord-buttons">
-        <ButtonSet btnNum={1} playingNum={state} />
-        <ButtonSet btnNum={2} playingNum={state} />
-        <ButtonSet btnNum={3} playingNum={state} />
-        <ButtonSet btnNum={4} playingNum={state} />
+        <ButtonSet
+          btnNum={1}
+          playingNum={state}
+          currentChords={currentChords}
+          setCurrentChords={setCurrentChords}
+          randomChord={randomChords[0]}
+        />
+        <ButtonSet
+          btnNum={2}
+          playingNum={state}
+          currentChords={currentChords}
+          setCurrentChords={setCurrentChords}
+          randomChord={randomChords[1]}
+        />
+        <ButtonSet
+          btnNum={3}
+          playingNum={state}
+          currentChords={currentChords}
+          setCurrentChords={setCurrentChords}
+          randomChord={randomChords[2]}
+        />
+        <ButtonSet
+          btnNum={4}
+          playingNum={state}
+          currentChords={currentChords}
+          setCurrentChords={setCurrentChords}
+          randomChord={randomChords[3]}
+        />
       </div>
       {playButton}
       <ShuffleButton shuffleChords={shuffleChords} />

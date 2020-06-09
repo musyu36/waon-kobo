@@ -54,14 +54,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ButtonsSet = ({ btnNum, playingNum }) => {
+const ButtonsSet = ({
+  btnNum,
+  playingNum,
+  currentChords,
+  setCurrentChords,
+  randomChord,
+}) => {
   const initialState = [0, 4, 7];
 
   const [state, setState] = useState(initialState);
 
-  const { setCurrentKey, currentChords, setCurrentChords } = useContext(
-    AppContext
-  );
+  const { setCurrentKey } = useContext(AppContext);
 
   const initialNotesState = [
     { name: "C", value: 0, checked: true },
@@ -111,6 +115,9 @@ const ButtonsSet = ({ btnNum, playingNum }) => {
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
 
+  console.log("### in button set: ", btnNum, " randomChord: ", randomChord);
+
+  // useEffect内で更新を行わないと，currentChordsが正しく更新されない
   useEffect(() => {
     setCurrentChords({ ...currentChords, [btnNum]: state });
   }, [state]);
