@@ -115,7 +115,15 @@ const ButtonsSet = ({
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
 
-  console.log("### in button set: ", btnNum, " randomChord: ", randomChord);
+  // propsで渡されたrandomChordを使ってここのボタン情報を更新する
+  useEffect(() => {
+    shuffleRootRadio(randomChord[0]);
+    shuffleChordRadio(randomChord[1]);
+  }, [randomChord]);
+
+  useEffect(() => {
+    shuffleChord(randomChord);
+  }, [notesStrings, chordStrings]);
 
   // useEffect内で更新を行わないと，currentChordsが正しく更新されない
   useEffect(() => {
@@ -130,6 +138,30 @@ const ButtonsSet = ({
     setOpenChordModal(false);
   };
 
+  // コードシャッフル
+  const shuffleRootRadio = (randomChordRootNum) => {
+    const value = notesStrings.map((item) => {
+      return {
+        name: item.name,
+        value: item.value,
+        checked: item.value === randomChordRootNum ? true : false,
+      };
+    });
+    setNotesStrings(value);
+  };
+
+  const shuffleChordRadio = (randomChordName) => {
+    const value = chordStrings.map((item) => {
+      return {
+        name: item.name,
+        value: item.value,
+        checked: item.name === randomChordName ? true : false,
+      };
+    });
+    setChordStrings(value);
+  };
+
+  // コード選択
   const handleRootRadioClick = (e) => {
     const name = e.target.name;
     const value = notesStrings.map((item) => {
@@ -164,9 +196,7 @@ const ButtonsSet = ({
     });
   };
 
-  // コードの選択
-  const selectChord = (e) => {
-    e.preventDefault();
+  const updateChord = () => {
     var rootNum = 0;
     var chordType = "";
 
@@ -184,7 +214,6 @@ const ButtonsSet = ({
         return setCurrentChord(chord.name);
       }
     });
-
     const nextChord = [];
     switch (chordType) {
       case "maj":
@@ -285,135 +314,19 @@ const ButtonsSet = ({
       default:
         break;
     }
-
     setState(nextChord);
+  };
+
+  // コードの選択
+  const selectChord = (e) => {
+    e.preventDefault();
+    updateChord();
     handleCloseChordModal();
   };
 
   // コードのランダム選択
-  const shuffleChord = (e) => {
-    e.preventDefault();
-    var rootNum = 0;
-    var chordType = "";
-
-    // trueの物を探す
-    notesStrings.map((note) => {
-      if (note.checked) {
-        rootNum = note.value;
-        return setCurrentNote(note.name);
-      }
-    });
-
-    chordStrings.map((chord) => {
-      if (chord.checked) {
-        chordType = chord.name;
-        return setCurrentChord(chord.name);
-      }
-    });
-
-    const nextChord = [];
-    switch (chordType) {
-      case "maj":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 4);
-        nextChord.push(rootNum + 7);
-        break;
-      case "min":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 3);
-        nextChord.push(rootNum + 7);
-        break;
-      case "7":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 4);
-        nextChord.push(rootNum + 7);
-        nextChord.push(rootNum + 10);
-        break;
-      case "M7":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 4);
-        nextChord.push(rootNum + 7);
-        nextChord.push(rootNum + 11);
-        break;
-      case "m7":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 3);
-        nextChord.push(rootNum + 7);
-        nextChord.push(rootNum + 10);
-        break;
-      case "mM7":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 3);
-        nextChord.push(rootNum + 7);
-        nextChord.push(rootNum + 11);
-        break;
-      case "dim":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 3);
-        nextChord.push(rootNum + 6);
-        nextChord.push(rootNum + 9);
-        break;
-      case "sus4":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 5);
-        nextChord.push(rootNum + 7);
-        break;
-      case "7sus4":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 5);
-        nextChord.push(rootNum + 7);
-        nextChord.push(rootNum + 10);
-        break;
-      case "aug":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 4);
-        nextChord.push(rootNum + 8);
-        break;
-      case "m7(♭5)":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 3);
-        nextChord.push(rootNum + 6);
-        nextChord.push(rootNum + 10);
-        break;
-      case "6":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 4);
-        nextChord.push(rootNum + 7);
-        nextChord.push(rootNum + 9);
-        break;
-      case "add9":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 4);
-        nextChord.push(rootNum + 7);
-        nextChord.push(rootNum + 14);
-        break;
-      case "9":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 4);
-        nextChord.push(rootNum + 7);
-        nextChord.push(rootNum + 10);
-        nextChord.push(rootNum + 14);
-        break;
-      case "7(♭9)":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 4);
-        nextChord.push(rootNum + 7);
-        nextChord.push(rootNum + 10);
-        nextChord.push(rootNum + 13);
-        break;
-      case "7(♯9)":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 4);
-        nextChord.push(rootNum + 7);
-        nextChord.push(rootNum + 10);
-        nextChord.push(rootNum + 15);
-        break;
-      default:
-        break;
-    }
-
-    setState(nextChord);
-    handleCloseChordModal();
+  const shuffleChord = () => {
+    updateChord();
   };
 
   const bodyChord = (

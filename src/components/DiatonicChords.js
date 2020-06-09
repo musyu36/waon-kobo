@@ -8,6 +8,15 @@ const diatonicChords = {
     6: "m7",
     7: "m7(♭5)",
   },
+  minor: {
+    1: "m7",
+    2: "m7(♭5)",
+    3: "M7",
+    4: "m7",
+    5: "m7",
+    6: "M7",
+    7: "7",
+  },
 };
 
 export default diatonicChords;

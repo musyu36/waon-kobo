@@ -24,14 +24,15 @@ const initialCurrentChords = {
   4: [0, 4, 7],
 };
 
+// majorではなくmajに注意
 const initialRandomChords = [
-  [0, "major"],
-  [0, "major"],
-  [0, "major"],
-  [0, "major"],
+  [0, "maj"],
+  [0, "maj"],
+  [0, "maj"],
+  [0, "maj"],
 ];
 
-const scaleStrings = ["major"];
+const scaleStrings = ["major", "minor"];
 
 const ChordButtons = () => {
   const { setCurrentKey } = useContext(AppContext);
@@ -85,7 +86,7 @@ const ChordButtons = () => {
 
   //コードシャッフル
   const shuffleChords = () => {
-    const randomScaleNum = Math.floor(Math.random() * 1);
+    const randomScaleNum = Math.floor(Math.random() * 2);
     const randomRootNum = Math.floor(Math.random() * 12);
     const randomDiatonic = [
       Math.floor(Math.random() * 7 + 1),
@@ -185,11 +186,93 @@ const ChordButtons = () => {
               break;
           }
           break;
+        case "minor":
+          switch (value) {
+            case 1:
+              rootNum = randomRootNum + 0;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+
+            case 2:
+              rootNum = randomRootNum + 2;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+
+            case 3:
+              rootNum = randomRootNum + 3;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+
+            case 4:
+              rootNum = randomRootNum + 5;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+
+            case 5:
+              rootNum = randomRootNum + 7;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+
+            case 6:
+              rootNum = randomRootNum + 8;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+
+            case 7:
+              rootNum = randomRootNum + 10;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+            default:
+              break;
+          }
+          break;
         default:
           break;
       }
     });
-    console.log("### randomDiatonic: ", randomDiatonicSet);
     setRandomChords(randomDiatonicSet);
   };
 
@@ -233,7 +316,7 @@ const ChordButtons = () => {
           randomChord={randomChords[3]}
         />
       </div>
-      {playButton}
+      {/* {playButton} */}
       <ShuffleButton shuffleChords={shuffleChords} />
     </>
   );
