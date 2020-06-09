@@ -1,0 +1,29 @@
+.shuffle-button {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.btn-shuffle-chords {
+  position: relative;
+  margin-bottom: 32px;
+  padding: 8px 8px 8px 8px;
+  border: none;
+  border-radius: 12px;
+  background: #e6f0fa;
+  box-shadow: 5px 5px 10px #c4ccd5, -5px -5px 10px #ffffff;
+  outline: 0;
+  cursor: pointer;
+}
+
+.btn-shuffle-chords:active {
+  position: relative;
+  margin-bottom: 32px;
+  padding: 9px 7px 7px 9px;
+  border: none;
+  border-radius: 12px;
+  background: #e6f0fa;
+  box-shadow: inset 5px 5px 10px #c4ccd5, inset -5px -5px 10px #ffffff;
+  outline: 0;
+  cursor: pointer;
+}
