@@ -99,6 +99,9 @@ const ButtonsSet = ({
     { name: "9", value: 13, checked: false },
     { name: "7(♭9)", value: 14, checked: false },
     { name: "7(♯9)", value: 15, checked: false },
+    { name: "m(♭5)", value: 16, checked: false },
+    { name: "(♯5)", value: 17, checked: false },
+    { name: "M7(♯5)", value: 18, checked: false },
   ];
 
   // ルート音
@@ -310,6 +313,22 @@ const ButtonsSet = ({
         nextChord.push(rootNum + 7);
         nextChord.push(rootNum + 10);
         nextChord.push(rootNum + 15);
+        break;
+      case "m(♭5)":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 3);
+        nextChord.push(rootNum + 6);
+        break;
+      case "(♯5)":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 4);
+        nextChord.push(rootNum + 6);
+        break;
+      case "M7(♯5)":
+        nextChord.push(rootNum);
+        nextChord.push(rootNum + 4);
+        nextChord.push(rootNum + 6);
+        nextChord.push(rootNum + 11);
         break;
       default:
         break;
