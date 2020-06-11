@@ -32,7 +32,7 @@ const initialRandomChords = [
   [0, "maj"],
 ];
 
-const scaleStrings = ["major", "minor"];
+const scaleStrings = ["major", "minor", "h_minor", "m_minor"];
 
 const ChordButtons = () => {
   const { setCurrentKey } = useContext(AppContext);
@@ -86,7 +86,7 @@ const ChordButtons = () => {
 
   //コードシャッフル
   const shuffleChords = () => {
-    const randomScaleNum = Math.floor(Math.random() * 2);
+    const randomScaleNum = Math.floor(Math.random() * 4);
     const randomRootNum = Math.floor(Math.random() * 12);
     const randomDiatonic = [
       Math.floor(Math.random() * 14 + 1),
@@ -94,10 +94,6 @@ const ChordButtons = () => {
       Math.floor(Math.random() * 14 + 1),
       Math.floor(Math.random() * 14 + 1),
     ];
-
-    console.log("### randomScaleNum: ", randomScaleNum);
-    console.log("### randomRootNum: ", randomRootNum);
-    console.log("### randomDiatonic: ", randomDiatonic);
 
     var randomScale = scaleStrings[randomScaleNum];
     var randomDiatonicSet = [];
@@ -421,11 +417,330 @@ const ChordButtons = () => {
               break;
           }
           break;
+        case "h_minor":
+          switch (value) {
+            case 1:
+              rootNum = randomRootNum + 0;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+
+            case 2:
+              rootNum = randomRootNum + 2;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+
+            case 3:
+              rootNum = randomRootNum + 3;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+
+            case 4:
+              rootNum = randomRootNum + 5;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+
+            case 5:
+              rootNum = randomRootNum + 7;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+
+            case 6:
+              rootNum = randomRootNum + 8;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+
+            case 7:
+              rootNum = randomRootNum + 11;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+            case 8:
+              rootNum = randomRootNum + 0;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+
+            case 9:
+              rootNum = randomRootNum + 2;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+
+            case 10:
+              rootNum = randomRootNum + 3;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+
+            case 11:
+              rootNum = randomRootNum + 5;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+
+            case 12:
+              rootNum = randomRootNum + 7;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+
+            case 13:
+              rootNum = randomRootNum + 8;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+
+            case 14:
+              rootNum = randomRootNum + 11;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+            default:
+              break;
+          }
+          break;
+        case "m_minor":
+          switch (value) {
+            case 1:
+              rootNum = randomRootNum + 0;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+
+            case 2:
+              rootNum = randomRootNum + 2;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+
+            case 3:
+              rootNum = randomRootNum + 3;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+
+            case 4:
+              rootNum = randomRootNum + 5;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+
+            case 5:
+              rootNum = randomRootNum + 7;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+
+            case 6:
+              rootNum = randomRootNum + 9;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+
+            case 7:
+              rootNum = randomRootNum + 11;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+            case 8:
+              rootNum = randomRootNum + 0;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+
+            case 9:
+              rootNum = randomRootNum + 2;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+
+            case 10:
+              rootNum = randomRootNum + 3;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+
+            case 11:
+              rootNum = randomRootNum + 5;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+
+            case 12:
+              rootNum = randomRootNum + 7;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+
+            case 13:
+              rootNum = randomRootNum + 9;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+
+            case 14:
+              rootNum = randomRootNum + 11;
+              while (rootNum >= 12) {
+                rootNum -= 12;
+              }
+              randomDiatonicSet.push([
+                rootNum,
+                diatonicChords[randomScale][value],
+              ]);
+              break;
+            default:
+              break;
+          }
+          break;
         default:
           break;
       }
     });
-    console.log("### randomDiatonicSet !! : ", randomDiatonicSet);
     setRandomChords(randomDiatonicSet);
   };
 
