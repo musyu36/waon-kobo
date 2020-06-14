@@ -4,7 +4,7 @@ import ShuffleIcon from "./ShuffleIcon";
 
 const ShuffleButton = ({ shuffleChords }) => {
   return (
-    <div className="shuffle-button">
+    <span className="shuffle-button">
       <button
         className="btn-shuffle-chords"
         variant="outlined"
@@ -12,7 +12,7 @@ const ShuffleButton = ({ shuffleChords }) => {
       >
         <ShuffleIcon />
       </button>
-    </div>
+    </span>
   );
 };
 

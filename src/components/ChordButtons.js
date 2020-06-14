@@ -48,6 +48,10 @@ const ChordButtons = () => {
 
   const [randomChords, setRandomChords] = useState(initialRandomChords);
 
+  // 表示用state
+  const [displayScale, setDisplayScale] = useState("");
+  const [displayKey, setDisplayKey] = useState("");
+
   useEffect(() => {
     currentChordsDic = currentChords;
   }, [currentChords]);
@@ -742,6 +746,75 @@ const ChordButtons = () => {
       }
     });
     setRandomChords(randomDiatonicSet);
+    updateDisplayScale(randomScale);
+    updateDisplayKey(randomRootNum);
+  };
+
+  const updateDisplayScale = (randomScale) => {
+    switch (randomScale) {
+      case "major":
+        setDisplayScale("Major");
+        break;
+      case "minor":
+        setDisplayScale("Minor");
+        break;
+      case "h_minor":
+        setDisplayScale("Harmonic Minor");
+        break;
+      case "m_minor":
+        setDisplayScale("Melodic Minor");
+        break;
+      default:
+        break;
+    }
+  };
+
+  const updateDisplayKey = (randomRootNum) => {
+    switch (randomRootNum) {
+      case 0:
+        setDisplayKey("C");
+        break;
+      case 1:
+        setDisplayKey("C♯");
+        break;
+      case 2:
+        setDisplayKey("D");
+        break;
+      case 3:
+        setDisplayKey("D♯");
+        break;
+      case 4:
+        setDisplayKey("E");
+        break;
+      case 5:
+        setDisplayKey("F");
+        break;
+      case 6:
+        setDisplayKey("F♯");
+        break;
+      case 7:
+        setDisplayKey("G");
+        break;
+      case 8:
+        setDisplayKey("G♯");
+        break;
+      case 9:
+        setDisplayKey("A");
+        break;
+      case 10:
+        setDisplayKey("A♯");
+        break;
+      case 11:
+        setDisplayKey("B");
+        break;
+      default:
+        break;
+    }
+  };
+
+  const deleteDisplayScaleAndKey = () => {
+    setDisplayScale("");
+    setDisplayKey("");
   };
 
   useEffect(() => {
@@ -761,6 +834,7 @@ const ChordButtons = () => {
           currentChords={currentChords}
           setCurrentChords={setCurrentChords}
           randomChord={randomChords[0]}
+          deleteDisplayScaleAndKey={deleteDisplayScaleAndKey}
         />
         <ButtonSet
           btnNum={2}
@@ -768,6 +842,7 @@ const ChordButtons = () => {
           currentChords={currentChords}
           setCurrentChords={setCurrentChords}
           randomChord={randomChords[1]}
+          deleteDisplayScaleAndKey={deleteDisplayScaleAndKey}
         />
         <ButtonSet
           btnNum={3}
@@ -775,6 +850,7 @@ const ChordButtons = () => {
           currentChords={currentChords}
           setCurrentChords={setCurrentChords}
           randomChord={randomChords[2]}
+          deleteDisplayScaleAndKey={deleteDisplayScaleAndKey}
         />
         <ButtonSet
           btnNum={4}
@@ -782,10 +858,22 @@ const ChordButtons = () => {
           currentChords={currentChords}
           setCurrentChords={setCurrentChords}
           randomChord={randomChords[3]}
+          deleteDisplayScaleAndKey={deleteDisplayScaleAndKey}
         />
       </div>
       {/* {playButton} */}
-      <ShuffleButton shuffleChords={shuffleChords} />
+      <div className="shuffle-window">
+        <span className="shuffle-window-inline">
+          <ShuffleButton
+            className="shuffle-window-btn"
+            shuffleChords={shuffleChords}
+          />
+          <div className="shuffle-window-inf">
+            <span>Scale:{displayScale}</span>
+            <span>Key: {displayKey}</span>
+          </div>
+        </span>
+      </div>
     </>
   );
 };
