@@ -9,13 +9,14 @@ import AppContext from "../contexts/AppContext";
 import notes from "../notes/Notes.js";
 
 function getModalStyle() {
-  const top = 20;
-  const left = 30;
+  const top = 50;
+  const left = 50;
 
   return {
     top: `${top}%`,
     left: `${left}%`,
     transform: `translate(-${top}%, -${left}%)`,
+    width: "80%",
   };
 }
 

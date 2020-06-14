@@ -10,9 +10,9 @@ const KeyBoard = () => {
       <span className="keyboard-shadow">
         <div className="key">
           {currentKey.includes(0) ? (
-            <div className="white_key active"></div>
+            <div className="white_key active first-key"></div>
           ) : (
-            <div className="white_key"></div>
+            <div className="white_key first-key"></div>
           )}
           {currentKey.includes(1) ? (
             <div className="black_key active"></div>
@@ -170,9 +170,9 @@ const KeyBoard = () => {
         </div>
         <div className="key">
           {currentKey.includes(26) ? (
-            <div className="white_key active"></div>
+            <div className="white_key active last-key"></div>
           ) : (
-            <div className="white_key"></div>
+            <div className="white_key last-key"></div>
           )}
         </div>
       </span>
