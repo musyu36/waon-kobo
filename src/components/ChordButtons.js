@@ -869,7 +869,7 @@ const ChordButtons = () => {
             shuffleChords={shuffleChords}
           />
           <div className="shuffle-window-inf">
-            <span>Scale:{displayScale}</span>
+            <span>Scale: {displayScale}</span>
             <span>Key: {displayKey}</span>
           </div>
         </span>
