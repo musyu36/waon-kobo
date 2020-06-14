@@ -60,6 +60,7 @@ const ButtonsSet = ({
   currentChords,
   setCurrentChords,
   randomChord,
+  deleteDisplayScaleAndKey,
 }) => {
   const initialState = [0, 4, 7];
 
@@ -175,6 +176,7 @@ const ButtonsSet = ({
       };
     });
     setNotesStrings(value);
+    deleteDisplayScaleAndKey();
   };
 
   const handleChordRadioClick = (e) => {
@@ -188,6 +190,7 @@ const ButtonsSet = ({
       };
     });
     setChordStrings(value);
+    deleteDisplayScaleAndKey();
   };
 
   // 再生

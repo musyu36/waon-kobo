@@ -6,7 +6,6 @@
 
 .btn-shuffle-chords {
   position: relative;
-  margin-bottom: 32px;
   padding: 8px 8px 8px 8px;
   border: none;
   border-radius: 12px;
@@ -18,7 +17,6 @@
 
 .btn-shuffle-chords:active {
   position: relative;
-  margin-bottom: 32px;
   padding: 9px 7px 7px 9px;
   border: none;
   border-radius: 12px;

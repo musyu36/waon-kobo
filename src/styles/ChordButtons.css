@@ -1,6 +1,7 @@
 .chord-buttons {
   display: flex;
   margin: 64px;
+  margin-bottom: 24px;
   align-items: center;
   justify-content: space-around;
 }
@@ -9,4 +10,25 @@
   display: flex;
   width: 100%;
   justify-content: center;
+}
+
+.shuffle-window {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.shuffle-window-inline {
+  display: flex;
+  width: 280px;
+  padding: 16px 24px;
+  border-radius: 20px;
+  background: #e6f0fa;
+  box-shadow: inset 2.5px 2.5px 5px #c4ccd5, inset -2.5px -2.5px 5px #ffffff;
+}
+.shuffle-window-inf {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 24px;
 }
