@@ -7,6 +7,9 @@
 
 .keyboard-shadow {
   display: flex;
+  justify-content: center;
+  max-width: 100%;
+  box-shadow: 5px 5px 10px #c4ccd5, -5px -5px 10px #ffffff;
 }
 
 .key {
@@ -36,9 +39,31 @@
   position: absolute;
   top: 0px;
   background-color: #e6f0fa;
-  border-radius: 0 0 5px 5px;
   border: 1px solid #b3b3b3;
   border-top: none;
+  border-bottom: none;
+  width: 100%;
+  height: 115px;
+}
+
+.first-key {
+  display: block;
+  position: absolute;
+  top: 0px;
+  background-color: #e6f0fa;
+  border-top: none;
+  border-left: none;
+  width: 100%;
+  height: 115px;
+}
+
+.last-key {
+  display: block;
+  position: absolute;
+  top: 0px;
+  background-color: #e6f0fa;
+  border-top: none;
+  border-right: none;
   width: 100%;
   height: 115px;
 }
